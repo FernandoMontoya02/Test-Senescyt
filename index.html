@@ -4,21 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Test Vocacional Senescyt</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-    }
-    .hidden { display: none; }
-    .question { margin-bottom: 10px; }
-    button { padding: 10px 20px; margin-top: 20px; }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <h1>Test Vocacional - Senescyt</h1>
-  
   <div id="start">
     <label for="studentName">Ingresa tu nombre completo:</label><br>
     <input type="text" id="studentName" required />
@@ -247,12 +237,20 @@ document.getElementById("testForm").addEventListener("submit", function(e) {
   }
 
   // Enviar a Google Sheets (ajusta 'TU_URL_DEL_SCRIPT' a tu URL real)
-  fetch('TU_URL_DEL_SCRIPT', {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
+  fetch('https://script.google.com/macros/s/AKfycbz7HqojjTuqdLho3Hu68SEAt2IZ8Ljj3G_toSAk_x4qRfNAoOMKc0lHnpfApSljg_kV/exec', {
+    method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(payload),
+})
+    .then(response => {
+      if (!response.ok) throw new Error("Error al enviar los datos");
+      console.log("Datos enviados correctamente");
+    })
+    .catch(error => {
+      console.error("Error al enviar los datos:", error);
+    });
 });
   </script>
 </body>

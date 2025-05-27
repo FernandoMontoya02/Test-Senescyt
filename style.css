@@ -1,0 +1,173 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 40px 20px;
+  background-image: url('https://img.freepik.com/fotos-premium/textura-acuarela-gris-fondo-arte-abstracto-pintura-gradiente-diseno_41691-6733.jpg?semt=ais_items_boosted&w=740');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #333;
+  line-height: 1.6;
+  backdrop-filter: brightness(0.95);
+}
+
+h1, h2, h3 {
+  color: #2c3e50;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Contenedor para centrar formulario y botones */
+#testForm {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  text-align: center;
+}
+
+.question {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 0 auto 15px auto; 
+  transition: transform 0.2s ease;
+  max-width: 600px; 
+}
+
+.question:hover {
+  transform: scale(1.01);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+button {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+  user-select: none;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(41, 128, 185, 0.6);
+}
+
+#result {
+  background: #ecf0f1;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 8px 0;
+  padding: 6px 12px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 20px 0;
+}
+
+/* Estilo para el bloque de inicio */
+#start {
+  max-width: 600px;
+  margin: 40px auto 30px auto;
+  background: rgba(139, 134, 134, 0.9);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#start label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #eff3f7;
+}
+
+#start input[type="text"] {
+  margin-top: 12px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1.5px solid #6e6363;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+#start input[type="text"]:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.5);
+}
+
+/* Botón del inicio con estilo consistente */
+#start button {
+  margin-top: 20px;
+  background-color: #304f64;
+  color: white;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+  user-select: none;
+}
+
+#start button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(41, 128, 185, 0.6);
+}
