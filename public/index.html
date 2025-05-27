@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test Vocacional Senescyt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Test Vocacional - Senescyt</h1>
+  <div id="start">
+    <label for="studentName">Ingresa tu nombre completo:</label><br>
+    <input type="text" id="studentName" required />
+    <br><br>
+    <button onclick="startTest()">Comenzar</button>
+  </div>
+
+  <form id="testForm" class="hidden">
+    <div id="questionsContainer"></div>
+    <button type="submit">Ver resultados</button>
+  </form>
+
+  <div id="result" class="hidden"></div>
+
+  <script>
+    const questions = [
+  "Diseñar programas de computación y explorar nuevas aplicaciones tecnológicas para uso del internet",
+  "Criar, cuidar y tratar animales domésticos y de campo",
+  "Investigar sobre áreas verdes, medio ambiente y cambios climáticos",
+  "Ilustrar, dibujar y animar digitalmente",
+  "Seleccionar, capacitar y motivar al personal de una organización/empresa",
+  "Realizar excavaciones para descubrir restos del pasado",
+  "Resolver problemas de cálculo para construir un puente",
+  "Diseñar cursos para enseñar a la gente sobre temas de salud e higiene",
+  "Tocar un instrumento y componer música",
+  "Planificar cuáles son las metas de una organización pública o privada a mediano y largo plazo",
+  "Diseñar y planificar la producción masiva de artículos como muebles, autos, equipos de oficina, empaques y envases para alimentos y otros",
+  "Diseñar logotipos y portadas de una revista",
+  "Organizar eventos y atender a sus asistentes",
+  "Atender la salud de personas enfermas",
+  "Controlar ingresos y egresos de fondos y presentar el balance final de una institución",
+  "Hacer experimentos con plantas (frutas, árboles, flores)",
+  "Concebir planos para viviendas, edificios y ciudadelas",
+  "Investigar y probar nuevos productos farmacéuticos",
+  "Hacer propuestas y formular estrategias para aprovechar las relaciones económicas entre dos países",
+  "Pintar, hacer esculturas, ilustrar libros de arte, etcétera",
+  "Elaborar campañas para introducir un nuevo producto al mercado",
+  "Examinar y tratar los problemas visuales",
+  "Defender a clientes individuales o empresas en juicios de diferente naturaleza",
+  "Diseñar máquinas que puedan simular actividades humanas",
+  "Investigar las causas y efectos de los trastornos emocionales",
+  "Supervisar las ventas de un centro comercial",
+  "Atender y realizar ejercicios a personas que tienen limitaciones físicas, problemas de lenguaje, etcétera",
+  "Prepararse para ser modelo profesional",
+  "Aconsejar a las personas sobre planes de ahorro e inversiones",
+  "Elaborar mapas, planos e imágenes para el estudio y análisis de datos geográficos",
+  "Diseñar juegos interactivos electrónicos para computadora",
+  "Realizar el control de calidad de los alimentos",
+  "Tener un negocio propio de tipo comercial",
+  "Escribir artículos periodísticos, cuentos, novelas y otros",
+  "Redactar guiones y libretos para un programa de televisión",
+  "Organizar un plan de distribución y venta de un gran almacén",
+  "Estudiar la diversidad cultural en el ámbito rural y urbano",
+  "Gestionar y evaluar convenios internacionales de cooperación para el desarrollo social",
+  "Crear campañas publicitarias",
+  "Trabajar investigando la reproducción de peces, camarones y otros animales marinos",
+  "Dedicarse a fabricar productos alimenticios de consumo masivo",
+  "Gestionar y evaluar proyectos de desarrollo en una institución educativa y/o fundación",
+  "Rediseñar y decorar espacios físicos en viviendas, oficinas y locales comerciales",
+  "Administrar una empresa de turismo y/o agencias de viaje",
+  "Aplicar métodos alternativos a la medicina tradicional para atender personas con dolencias de diversa índole",
+  "Diseñar ropa para niños, jóvenes y adultos",
+  "Investigar organismos vivos para elaborar vacunas",
+  "Manejar y/o dar mantenimiento a dispositivos/aparatos tecnológicos en aviones, barcos, radares, etcétera",
+  "Estudiar idiomas extranjeros –actuales y antiguos– para hacer traducción",
+  "Restaurar piezas y obras de arte",
+  "Revisar y dar mantenimiento a artefactos eléctricos, electrónicos y computadoras",
+  "Enseñar a niños de 0 a 5 años",
+  "Investigar y/o sondear nuevos mercados",
+  "Atender la salud dental de las personas",
+  "Tratar a niños, jóvenes y adultos con problemas psicológicos",
+  "Crear estrategias de promoción y venta de nuevos productos ecuatorianos en el mercado internacional",
+  "Planificar y recomendar dietas para personas diabéticas y/o con sobrepeso",
+  "Trabajar en una empresa petrolera en un cargo técnico como control de la producción",
+  "Administrar una empresa (familiar, privada o pública)",
+  "Tener un taller de reparación y mantenimiento de carros, tractores, etcétera",
+  "Ejecutar proyectos de extracción minera y metalúrgica",
+  "Asistir a directivos de multinacionales con manejo de varios idiomas",
+  "Diseñar programas educativos para niños con discapacidad",
+  "Aplicar conocimientos de estadística en investigaciones en diversas áreas (social, administrativa, salud, etcétera)",
+  "Fotografiar hechos históricos, lugares significativos, rostros, paisajes para el área publicitaria, artística, periodística y social",
+  "Trabajar en museos y bibliotecas nacionales e internacionales",
+  "Ser parte de un grupo de teatro",
+  "Producir cortometrajes, spots publicitarios, programas educativos, de ficción, etcétera",
+  "Estudiar la influencia entre las corrientes marinas y el clima y sus consecuencias ecológicas",
+  "Conocer las distintas religiones, su filosofía y transmitirlas a la comunidad en general",
+  "Asesorar a inversionistas en la compra de bienes/acciones en mercados nacionales e internacionales",
+  "Estudiar grupos étnicos, sus costumbres, tradiciones, cultura y compartir sus vivencias",
+  "Explorar el espacio sideral, los planetas, sus características y componentes",
+  "Mejorar la imagen facial y corporal de las personas aplicando diferentes técnicas",
+  "Decorar jardines de casas y parques públicos",
+  "Administrar y renovar menúes de comidas en un hotel o restaurante",
+  "Trabajar como presentador de televisión, locutor de radio y televisión, animador de programas culturales y concursos",
+  "Diseñar y ejecutar programas de turismo",
+  "Administrar y ordenar (planificar) adecuadamente la ocupación del espacio físico de ciudades, países, etc., utilizando imágenes de satélite, mapas",
+  "Organizar, planificar y administrar centros educativos"
+]
+;
+
+const areas = {
+  arte: [
+    3, 8, 11, 19, 27, 30, 34, 38, 42, 45, 49, 64, 66, 67, 74, 76
+  ],
+  sociales: [
+    5, 12, 22, 24, 23, 36, 37, 41, 48, 51, 54, 62, 65, 69, 71, 77
+  ],
+  economica: [
+    4, 9, 14, 18, 20, 25, 28, 32, 35, 43, 52, 55, 58, 61, 70, 79
+  ],
+  tecnologia: [
+    0, 6, 10, 16, 17, 23, 29, 40, 47, 50, 57, 59, 60, 63, 72, 78
+  ],
+  salud: [
+    1, 2, 7, 13, 15, 21, 26, 31, 39, 44, 46, 53, 56, 68, 73, 75
+  ]
+};
+
+
+    const areaInfo = {
+      arte: {
+        nombre: "Arte y Creatividad",
+        carreras: ["Diseño Gráfico", "Diseño y Decoración de Interiores", "Diseño de Jardines", "Diseño de Modas", 
+        "Diseño de Joyas", "Artes Plásticas (Pintura, Escultura, Danza, Teatro, Artesanía, Cerámica)", "Dibujo Publicitario", 
+        "Restauración y Museología", "Modelaje", "Fotografía", "Fotografía Digital", "Gestión Gráfica y Publicitaria", 
+        "Locución y Publicidad", "Actuación", "Camarografía", "Arte Industrial", "Producción Audiovisual y Multimedia", 
+        "Comunicación y Producción en Radio y Televisión", "Diseño del Paisaje", "Cine y Video", "Comunicación Escénica para televisión"]
+      },
+      sociales: {
+        nombre: "Ciencias Sociales",
+        carreras: ["Psicología en general", "Trabajo Social", "Idiomas", "Educación Internacional", "Historia y Geografía", "Periodismo", 
+        "Periodismo Digital", "Derecho", "Ciencias Políticas", "Sociología", "Antropología", "Arqueología", "Gestión Social y Desarrollo", 
+        "Consejería Familiar", "Comunicación y Publicidad", "Administración Educativa", "Educación Especial", "Psicopedagogía", 
+        "Estimulación Temprana", "Traducción Simultánea", "Lingüística", "Educación de Párvulos", "Bibliotecología", "Museología", 
+        "Relaciones Internacionales y Diplomacia", "Comunicación Social con mención en Marketing y Gestión de Empresas", 
+        "Redacción Creativa y Publicitaria", "Relaciones Públicas y Comunicación Organizacional", "Hotelería y Turismo", "Teología", 
+        "Institución Sacerdotal"]
+      },
+      economica: {
+        nombre: "Económica, Administrativa y Financiera",
+        carreras: ["Administración de Empresas", "Contabilidad", "Auditoría", "Ventas", "Marketing Estratégico", 
+        "Gestión y Negocios Internacionales", "Gestión Empresarial", "Gestión Financiera", "Ingeniería Comercial", "Comercio Exterior", 
+        "Banca y Finanzas", "Gestión de Recursos Humanos", "Comunicaciones Integradas en Marketing", 
+        "Administración de Empresas Ecoturísticas y de Hospitalidad", "Ciencias Económicas y Financieras", 
+        "Administración y Ciencias Políticas", "Ciencias Empresariales", "Comercio Electrónico", "Emprendedores", 
+        "Gestión de Organismos Públicos (Municipios, Ministerios, etcétera.)", "Gestión de Centros Educativos"]
+      },
+      tecnologia: {
+        nombre: "Ciencia y Tecnología",
+        carreras: ["Ingeniería en Sistemas Computacionales", "Geología", "Ingeniería Civil", "Arquitectura", "Electrónica", "Telemática", 
+        "Telecomunicaciones", "Ingeniería Mecatrónica (Robótica)", "Imagen y Sonido", "Minas, Petróleo y Metalurgia", "Ingeniería Mecánica", 
+        "Ingeniería Industrial", "Física", "Matemáticas Aplicadas", "Ingeniería en Estadística", "Ingeniería Automotriz", 
+        "Biotecnología Ambiental", "Ingeniería Geográfica", "Carreras Militares (Marina, Aviación, Ejército)", 
+        "Ingeniería en Costas y Obras Portuarias", "Estadística Informática", "Programación y Desarrollo de Sistemas", 
+        "Tecnología en Informática Educativa", "Astronomía", "Ingeniería en Ciencias Geográficas y Desarrollo Sustentable"]
+      },
+      salud: {
+        nombre: "Ciencias Ecológicas, Biológicas y de la Salud",
+        carreras: ["Biología", "Bioquímica", "Farmacia", "Biología Marina", "Bioanálisis", "Biotecnología", "Ciencias Ambientales", 
+        "Zootecnia", "Veterinaria", "Nutrición y Estética", "Cosmetología", "Dietética y Estética", "Medicina", "Obstetricia", 
+        "Urgencias Médicas", "Odontología", "Enfermería", "Tecnología", "Oceanografía y Ciencias Ambientales", "Médica", "Agronomía", 
+        "Horticultura y Fruticultura", "Ingeniería de Alimentos", "Gastronomía", "Chef", "Cultura Física, Deportes y Rehabilitación", 
+        "Gestión Ambiental", "Ingeniería Ambiental", "Optometría", "Homeopatía", "Reflexología"]
+      }
+    };
+
+    let studentName = "";
+
+    function startTest() {
+      const nameInput = document.getElementById("studentName");
+      if (!nameInput.value.trim()) {
+        alert("Por favor, escribe tu nombre.");
+        return;
+      }
+      studentName = nameInput.value;
+      document.getElementById("start").classList.add("hidden");
+      document.getElementById("testForm").classList.remove("hidden");
+      loadQuestions();
+    }
+
+    function loadQuestions() {
+      const container = document.getElementById("questionsContainer");
+      questions.forEach((q, i) => {
+        const div = document.createElement("div");
+        div.className = "question";
+        div.innerHTML = `
+          <label>${i + 1}. ${q}</label><br>
+          <input type="radio" name="q${i}" value="1" required> Me interesa
+          <input type="radio" name="q${i}" value="0"> No me interesa
+        `;
+        container.appendChild(div);
+      });
+    }
+
+document.getElementById("testForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = new FormData(e.target);
+  let scores = { arte: 0, sociales: 0, economica: 0, tecnologia: 0, salud: 0 };
+
+  for (let area in areas) {
+    areas[area].forEach(i => {
+      if (form.get(`q${i}`) === "1") scores[area]++;
+    });
+  }
+
+  // Encontrar el área con mayor puntaje
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const topArea = sorted[0][0]; // área con más puntos
+
+  // Construir el HTML de resultados mostrando todas las áreas
+  let resultsHTML = `<h2>¡Gracias, ${studentName}!</h2><h3>Resultados por área:</h3><ul>`;
+  for (const [area, puntos] of sorted) {
+    resultsHTML += `<li><strong>${areaInfo[area].nombre}:</strong> ${puntos} puntos</li>`;
+  }
+  resultsHTML += `</ul>`;
+
+  // Mostrar carreras solo para el área con mayor puntaje
+  resultsHTML += `
+    <hr>
+    <h3>Área donde más destacas: <strong>${areaInfo[topArea].nombre}</strong></h3>
+    <p><strong>Carreras sugeridas:</strong> ${areaInfo[topArea].carreras.join(", ")}</p>
+    <button id="showAllBtn">Ver todas las áreas y carreras</button>
+    <div id="allAreasContainer" class="hidden"></div>
+  `;
+
+  // Mostrar el resultado en la página
+  document.getElementById("testForm").classList.add("hidden");
+  const resultDiv = document.getElementById("result");
+  resultDiv.classList.remove("hidden");
+  resultDiv.innerHTML = resultsHTML;
+
+  // Evento para mostrar tabla completa
+  document.getElementById("showAllBtn").addEventListener("click", () => {
+    const container = document.getElementById("allAreasContainer");
+    container.classList.remove("hidden");
+    container.innerHTML = generateFullTable();
+    // Ocultar el botón luego de mostrar la tabla
+    document.getElementById("showAllBtn").style.display = "none";
+  });
+
+  // Preparar datos para enviar a Google Sheets
+  const payload = {
+    nombre: studentName,
+    fecha: new Date().toLocaleString()
+  };
+  for (const [area, puntos] of Object.entries(scores)) {
+    payload[area] = puntos;
+  }
+
+fetch('/api/guardar', {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+})
+  .then(response => {
+    if (!response.ok) throw new Error("Error al enviar los datos");
+    return response.json();
+  })
+  .then(data => {
+    console.log("Datos enviados correctamente:", data);
+  })
+  .catch(error => {
+    console.error("Error al enviar los datos:", error);
+  });
+});
+    function generateFullTable() {
+      let tableHTML = `<h3>Áreas y Carreras</h3><table><tr><th>Área</th><th>Carreras</th></tr>`;
+      for (const [area, info] of Object.entries(areaInfo)) {
+        tableHTML += `<tr><td>${info.nombre}</td><td>${info.carreras.join(", ")}</td></tr>`;
+      }
+      tableHTML += `</table>`;
+      return tableHTML;
+    }
+  </script>
+</body>
+</html>

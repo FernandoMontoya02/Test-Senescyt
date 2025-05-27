@@ -171,3 +171,65 @@ hr {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(41, 128, 185, 0.6);
 }
+/* Contenedor para la tabla completa */
+#fullTableContainer {
+  max-width: 600px;
+  margin: 30px auto;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* para que la tabla no se desborde en pantallas pequeñas */
+}
+
+/* Tabla */
+#fullTableContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  color: #2c3e50;
+  border: 2px solid #ccc; /* borde exterior de la tabla */
+}
+
+/* Encabezados de tabla */
+#fullTableContainer th {
+  background-color: #3498db;
+  color: white;
+  font-weight: 700;
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ccc; /* borde entre celdas */
+}
+
+/* Celdas */
+#fullTableContainer td {
+  padding: 10px 15px;
+  border: 1px solid #ccc; /* borde entre celdas */
+}
+
+/* Filas al pasar el mouse */
+#fullTableContainer tbody tr:hover {
+  background-color: #ecf0f1;
+  cursor: default;
+}
+
+/* Para el botón que muestra la tabla */
+#showFullTableBtn {
+  display: block;
+  margin: 20px auto 40px auto;
+  background-color: #2980b9;
+  color: white;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(41, 128, 185, 0.6);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+#showFullTableBtn:hover {
+  background-color: #1f618d;
+  transform: translateY(-2px);
+}
